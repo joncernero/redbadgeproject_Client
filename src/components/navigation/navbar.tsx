@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import * as FaIcons from 'react-icons/fa';
 import * as AiIcons from 'react-icons/ai';
 import { Link } from 'react-router-dom';
-import { SidebarData } from './sidebardata';
+import { SidebarData } from './SidebarData';
 import { IconContext } from 'react-icons';
 
 interface State {
@@ -10,9 +10,13 @@ interface State {
 }
 
 export class Navbar extends Component<{}, State> {
-  state = {
-    sidebarOpen: false,
-  };
+  constructor(props: {}) {
+    super(props);
+    this.state = {
+      sidebarOpen: false,
+    };
+  }
+
   private toggleSidebar = () =>
     this.setState((prevState) => ({
       ...prevState,

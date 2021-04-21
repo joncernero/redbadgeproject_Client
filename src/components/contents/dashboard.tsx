@@ -1,6 +1,17 @@
 import React, { Component } from 'react';
 
-export class Dashboard extends Component {
+interface State {}
+
+interface Props {
+  token: string;
+}
+
+export class Dashboard extends Component<Props, State> {
+  constructor(props: Props) {
+    super(props);
+    this.state = {};
+  }
+
   render() {
     return (
       <div>

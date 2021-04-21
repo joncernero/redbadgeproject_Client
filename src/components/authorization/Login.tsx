@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import APIURL from '../../utilities/environments';
+import APIURL from '../../utilities/Environments';
 
 interface State {
-  email: string | undefined;
-  password: string | undefined;
+  email: string;
+  password: string;
   isAlertOpen: boolean;
 }
 
@@ -12,11 +12,14 @@ interface Props {
 }
 
 export class Login extends Component<Props, State> {
-  state = {
-    email: undefined,
-    password: undefined,
-    isAlertOpen: false,
-  };
+  constructor(props: Props) {
+    super(props);
+    this.state = {
+      email: '',
+      password: '',
+      isAlertOpen: false,
+    };
+  }
 
   toggleIsAlertOpen = () =>
     this.setState((prevState) => ({
@@ -52,8 +55,8 @@ export class Login extends Component<Props, State> {
   resetState = () => {
     this.setState((prevState) => ({
       ...prevState,
-      email: undefined,
-      password: undefined,
+      email: '',
+      password: '',
     }));
   };
   render() {
