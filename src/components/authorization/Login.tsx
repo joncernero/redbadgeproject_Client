@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import APIURL from '../../utilities/Environments';
+import { RouteComponentProps, withRouter } from 'react-router-dom';
 
 interface State {
   email: string;
@@ -7,11 +8,11 @@ interface State {
   isAlertOpen: boolean;
 }
 
-interface Props {
+interface Props extends RouteComponentProps {
   updateToken: (newToken: string) => void;
 }
 
-export class Login extends Component<Props, State> {
+class Login extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
     this.state = {
@@ -45,6 +46,9 @@ export class Login extends Component<Props, State> {
       .then((data) => {
         if (data.sessionToken) {
           this.props.updateToken(data.sessionToken);
+          localStorage.setItem('token', data.sessionToken);
+          console.log(data.sessionToken);
+          this.props.history.push('/dashboard');
         } else {
           this.resetState();
         }
@@ -62,8 +66,37 @@ export class Login extends Component<Props, State> {
   render() {
     return (
       <div>
-        <h1>Hello from Login!</h1>
+        <h1>Login</h1>
+        <form onSubmit={this.handleSubmit}>
+          <div>
+            <label htmlFor='email'>Email</label>
+            <input
+              onChange={(e) => this.setState({ email: e.target.value })}
+              name='email'
+              type='email'
+              placeholder='email@test.com'
+              value={this.state.email}
+              required
+            />
+          </div>
+          <div>
+            <label htmlFor='password'>Password</label>
+            <input
+              onChange={(e) => this.setState({ password: e.target.value })}
+              name='password'
+              type='password'
+              minLength={5}
+              placeholder='password'
+              value={this.state.password}
+              required
+            />
+          </div>
+
+          <button type='submit'>Login</button>
+        </form>
       </div>
     );
   }
 }
+
+export default withRouter(Login);

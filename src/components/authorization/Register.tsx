@@ -71,7 +71,7 @@ export class Register extends Component<Props, State> {
       password: '',
       firstName: '',
       lastName: '',
-      companyId: 0,
+      companyId: 1,
     }));
   };
 

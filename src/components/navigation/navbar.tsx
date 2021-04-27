@@ -3,14 +3,28 @@ import * as FaIcons from 'react-icons/fa';
 import * as AiIcons from 'react-icons/ai';
 import { Link } from 'react-router-dom';
 import { SidebarData } from './SidebarData';
+import './Navbar.css';
 import { IconContext } from 'react-icons';
+import {
+  NavbarDiv,
+  MenuBars,
+  NavMenuItems,
+  NavbarToggle,
+  Span,
+} from '../../styled/Nav';
+import { RouteComponentProps, withRouter } from 'react-router-dom';
 
 interface State {
   sidebarOpen: boolean;
 }
 
-export class Navbar extends Component<{}, State> {
-  constructor(props: {}) {
+interface Props extends RouteComponentProps {
+  SessionToken: string;
+  clearToken: () => void;
+}
+
+class Navbar extends Component<Props, State> {
+  constructor(props: Props) {
     super(props);
     this.state = {
       sidebarOpen: false,
@@ -27,30 +41,48 @@ export class Navbar extends Component<{}, State> {
     return (
       <>
         <IconContext.Provider value={{ color: '#fff' }}>
-          <div className='navbar'>
-            <Link to='#' className='menu-bars'>
-              <FaIcons.FaBars onClick={this.toggleSidebar} />
+          <NavbarDiv>
+            <Link to='#'>
+              <MenuBars>
+                <FaIcons.FaBars onClick={this.toggleSidebar} />
+              </MenuBars>
             </Link>
-          </div>
+            <h1>diligence</h1>
+            {localStorage.getItem('token') ? (
+              <button
+                onClick={() => {
+                  this.props.clearToken();
+                  this.props.history.push('/');
+                }}>
+                Logout
+              </button>
+            ) : (
+              <button>
+                <Link to='/login'>Login</Link>
+              </button>
+            )}
+          </NavbarDiv>
           <nav
             className={this.state.sidebarOpen ? 'nav-menu active' : 'nav-menu'}>
-            <ul className='nav-menu-items' onClick={this.toggleSidebar}>
-              <li className='navbar-toggle'>
-                <Link to='#' className='menu-bars'>
-                  <AiIcons.AiOutlineClose />
-                </Link>
-              </li>
+            <NavMenuItems onClick={this.toggleSidebar}>
+              <NavbarToggle>
+                <MenuBars>
+                  <Link to='#'>
+                    <AiIcons.AiOutlineClose />
+                  </Link>
+                </MenuBars>
+              </NavbarToggle>
               {SidebarData.map((item, index) => {
                 return (
                   <li key={index} className={item.cName}>
                     <Link to={item.path}>
                       {item.icon}
-                      <span>{item.title}</span>
+                      <Span>{item.title}</Span>
                     </Link>
                   </li>
                 );
               })}
-            </ul>
+            </NavMenuItems>
           </nav>
         </IconContext.Provider>
       </>
@@ -58,4 +90,4 @@ export class Navbar extends Component<{}, State> {
   }
 }
 
-export default Navbar;
+export default withRouter(Navbar);
