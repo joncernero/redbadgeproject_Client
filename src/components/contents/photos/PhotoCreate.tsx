@@ -20,7 +20,8 @@ class PhotoCreate extends Component<Props, State> {
       unitId: 0,
     };
   }
-  fetchPhotoData = (e: React.FormEvent): void => {
+
+  fetchSequelizeData = (e: React.SyntheticEvent): void => {
     e.preventDefault();
     fetch(`${APIURL}/photo/create`, {
       method: 'POST',
@@ -44,10 +45,12 @@ class PhotoCreate extends Component<Props, State> {
         });
       });
   };
+
+  fetchCloudinaryURL = (e: React.SyntheticEvent): void => {};
   render() {
     return (
       <div>
-        <h1>Hello from PhotoCreate</h1>
+        {/* <input type='file' onChange={this.fileSelectedHandler} /> */}
       </div>
     );
   }

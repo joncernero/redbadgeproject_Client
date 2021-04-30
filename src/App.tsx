@@ -16,12 +16,10 @@ import Login from './components/authorization/Login';
 import Navbar from './components/navigation/Navbar';
 import { Home } from './pages/Home';
 import { About } from './pages/About';
-import { Admin } from './components/contents/Admin';
+import { Admin } from './components/authorization/Admin';
 
 export interface Token {
   SessionToken: string;
-  // email: '';
-  // role: '';
 }
 
 export class App extends Component<{}, Token> {
@@ -30,7 +28,7 @@ export class App extends Component<{}, Token> {
     this.state = {
       SessionToken: '',
       // email: this.state.email,
-      // role: this.state.email,
+      // role: this.state.role,
     };
   }
   updateToken = (newToken: string) => {
@@ -60,7 +58,7 @@ export class App extends Component<{}, Token> {
       component = <Dashboard token={this.state.SessionToken} />;
     }
     if (pageToShow === 'admin') {
-      component = <Admin updateToken={this.updateToken} />;
+      component = <Admin token={this.state.SessionToken} />;
     }
     if (pageToShow === 'property') {
       component = <PropertyIndex token={this.state.SessionToken} />;

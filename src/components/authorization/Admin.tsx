@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import { Register } from '../authorization/Register';
+import { Register } from './Register';
 
 interface State {}
 
 interface Props {
-  updateToken: (newToken: string) => void;
+  token: string;
+  // role: string;
 }
 
 export class Admin extends Component<Props, State> {
@@ -16,7 +17,7 @@ export class Admin extends Component<Props, State> {
   render() {
     return (
       <div>
-        <Register updateToken={this.props.updateToken} />
+        <Register token={this.props.token} />
       </div>
     );
   }
