@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import APIURL from '../../../utilities/Environments';
-import { Table } from 'reactstrap';
 import PropertyEdit from './PropertyEdit';
 
 interface Property {
@@ -18,8 +17,7 @@ interface Props {
   token: string;
   properties: Property[];
   fetchProperties: Function;
-  editUpdateProperty: Function;
-  toggleActive: Function;
+  togglePropertyEdit: Function;
   updateActive: boolean;
 }
 
@@ -35,7 +33,7 @@ class PropertyTable extends Component<Props, State> {
     };
   }
 
-  deleteProperties = (property: Property) => {
+  deleteProperty = (property: Property) => {
     fetch(`${APIURL}/property/delete/${property.id}`, {
       method: 'Delete',
       headers: new Headers({
@@ -60,21 +58,19 @@ class PropertyTable extends Component<Props, State> {
           <td>{property.companyId}</td>
           <td>
             <button
-              color='danger'
               onClick={() => {
-                this.deleteProperties(property);
+                this.setState({ editingProperty: property });
+                this.props.togglePropertyEdit();
               }}>
-              Delete
+              Edit
             </button>
           </td>
           <td>
             <button
-              color='primary'
               onClick={() => {
-                this.setState({ editingProperty: property });
-                this.props.toggleActive();
+                this.deleteProperty(property);
               }}>
-              Edit
+              Delete
             </button>
           </td>
         </tr>
@@ -87,7 +83,7 @@ class PropertyTable extends Component<Props, State> {
         <div>
           <h3>Properties</h3>
           <hr />
-          <Table striped>
+          <table>
             <thead>
               <tr>
                 <th>#</th>
@@ -100,13 +96,13 @@ class PropertyTable extends Component<Props, State> {
               </tr>
             </thead>
             <tbody>{this.propertiesMapper()}</tbody>
-          </Table>
+          </table>
         </div>
         {this.props.updateActive && this.state.editingProperty ? (
           <PropertyEdit
-            propertiesToUpdate={this.state.editingProperty}
+            propertyToUpdate={this.state.editingProperty}
             token={this.props.token}
-            toggleActive={this.props.toggleActive}
+            togglePropertyEdit={this.props.togglePropertyEdit}
             fetchProperties={this.props.fetchProperties}
           />
         ) : null}

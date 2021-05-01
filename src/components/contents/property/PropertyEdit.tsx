@@ -1,15 +1,5 @@
 import React, { Component } from 'react';
 import APIURL from '../../../utilities/Environments';
-import {
-  Modal,
-  ModalHeader,
-  ModalBody,
-  Form,
-  FormGroup,
-  Label,
-  Input,
-  Button,
-} from 'reactstrap';
 
 interface Property {
   id: number;
@@ -33,8 +23,8 @@ interface State {
 
 interface Props {
   token: string;
-  toggleActive: Function;
-  propertiesToUpdate: Property;
+  togglePropertyEdit: Function;
+  propertyToUpdate: Property;
   fetchProperties: Function;
 }
 
@@ -42,18 +32,18 @@ class PropertyEdit extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
     this.state = {
-      editName: this.props.propertiesToUpdate.name,
-      editStreetAddress: this.props.propertiesToUpdate.streetAddress,
-      editCity: this.props.propertiesToUpdate.city,
-      editState: this.props.propertiesToUpdate.state,
-      editZipcode: this.props.propertiesToUpdate.zipcode,
-      editNumberOfUnits: this.props.propertiesToUpdate.numberOfUnits,
+      editName: this.props.propertyToUpdate.name,
+      editStreetAddress: this.props.propertyToUpdate.streetAddress,
+      editCity: this.props.propertyToUpdate.city,
+      editState: this.props.propertyToUpdate.state,
+      editZipcode: this.props.propertyToUpdate.zipcode,
+      editNumberOfUnits: this.props.propertyToUpdate.numberOfUnits,
     };
   }
 
   propertyUpdate = (e: React.SyntheticEvent): void => {
     e.preventDefault();
-    fetch(`${APIURL}/property/update/${this.props.propertiesToUpdate.id}`, {
+    fetch(`${APIURL}/property/update/${this.props.propertyToUpdate.id}`, {
       method: 'Put',
       body: JSON.stringify({
         name: this.state.editName,
@@ -69,66 +59,63 @@ class PropertyEdit extends Component<Props, State> {
       }),
     })
       .then((res) => res.json())
-      .then((propertyData) => {
-        this.props.toggleActive();
+      .then(() => {
+        this.props.fetchProperties();
+        this.props.togglePropertyEdit();
       });
   };
 
   render() {
     return (
       <div>
-        <Modal isOpen={true}>
-          <ModalHeader>Update Property</ModalHeader>
-          <ModalBody>
-            <Form onSubmit={this.propertyUpdate}>
-              <FormGroup>
-                <Label htmlFor='name'>Edit Name:</Label>
-                <Input
-                  name='name'
-                  value={this.state.editName}
-                  onChange={(e) => this.setState({ editName: e.target.value })}
-                />
-                <Label htmlFor='streetAddress'>Edit Street Address:</Label>
-                <Input
-                  name='streetAddress'
-                  value={this.state.editStreetAddress}
-                  onChange={(e) =>
-                    this.setState({ editStreetAddress: e.target.value })
-                  }
-                />
-                <Label htmlFor='city'>Edit City:</Label>
-                <Input
-                  name='city'
-                  value={this.state.editCity}
-                  onChange={(e) => this.setState({ editCity: e.target.value })}
-                />
-                <Label htmlFor='state'>Edit State:</Label>
-                <Input
-                  name='state'
-                  value={this.state.editState}
-                  onChange={(e) => this.setState({ editState: e.target.value })}
-                />
-                <Label htmlFor='zipcode'>Edit Zipcode:</Label>
-                <Input
-                  name='zipcode'
-                  value={this.state.editZipcode}
-                  onChange={(e) =>
-                    this.setState({ editZipcode: e.target.value })
-                  }
-                />
-                <Label htmlFor='numberOfUnits'>Edit Number Of Units:</Label>
-                <Input
-                  name='numberOfUnits'
-                  value={this.state.editNumberOfUnits}
-                  onChange={(e) =>
-                    this.setState({ editNumberOfUnits: Number(e.target.value) })
-                  }
-                />
-              </FormGroup>
-              <Button type='submit'>Update Property!</Button>
-            </Form>
-          </ModalBody>
-        </Modal>
+        <h1>Update Property</h1>
+        <div>
+          <form onSubmit={this.propertyUpdate}>
+            <>
+              <label htmlFor='name'>Edit Name:</label>
+              <input
+                name='name'
+                value={this.state.editName}
+                onChange={(e) => this.setState({ editName: e.target.value })}
+              />
+              <label htmlFor='streetAddress'>Edit Street Address:</label>
+              <input
+                name='streetAddress'
+                value={this.state.editStreetAddress}
+                onChange={(e) =>
+                  this.setState({ editStreetAddress: e.target.value })
+                }
+              />
+              <label htmlFor='city'>Edit City:</label>
+              <input
+                name='city'
+                value={this.state.editCity}
+                onChange={(e) => this.setState({ editCity: e.target.value })}
+              />
+              <label htmlFor='state'>Edit State:</label>
+              <input
+                name='state'
+                value={this.state.editState}
+                onChange={(e) => this.setState({ editState: e.target.value })}
+              />
+              <label htmlFor='zipcode'>Edit Zipcode:</label>
+              <input
+                name='zipcode'
+                value={this.state.editZipcode}
+                onChange={(e) => this.setState({ editZipcode: e.target.value })}
+              />
+              <label htmlFor='numberOfUnits'>Edit Number Of Units:</label>
+              <input
+                name='numberOfUnits'
+                value={this.state.editNumberOfUnits}
+                onChange={(e) =>
+                  this.setState({ editNumberOfUnits: Number(e.target.value) })
+                }
+              />
+            </>
+            <button type='submit'>Update</button>
+          </form>
+        </div>
       </div>
     );
   }

@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import APIURL from '../../../utilities/Environments';
 import PropertyCreate from './PropertyCreate';
-import PropertyEdit from './PropertyEdit';
 import PropertyTable from './PropertyTable';
-import { Spinner } from 'reactstrap';
 
 interface Property {
   id: number;
@@ -19,7 +17,7 @@ interface Property {
 interface State {
   properties: Property[];
   updateActive: boolean;
-  propertiesToUpdate: Property;
+  propertyToUpdate: Property;
   isLoading: boolean;
 }
 
@@ -33,7 +31,7 @@ class PropertyIndex extends Component<Props, State> {
     this.state = {
       properties: [],
       updateActive: false,
-      propertiesToUpdate: {
+      propertyToUpdate: {
         id: 0,
         name: '',
         streetAddress: '',
@@ -65,22 +63,7 @@ class PropertyIndex extends Component<Props, State> {
       });
   };
 
-  editUpdateProperty = (property: Property[]) => {
-    this.setState((state) => ({
-      propertiesToUpdate: {
-        id: 0,
-        name: '',
-        streetAddress: '',
-        city: '',
-        state: '',
-        zipcode: '',
-        numberOfUnits: 0,
-        companyId: 0,
-      },
-    }));
-  };
-
-  toggleActive = () => {
+  togglePropertyEdit = () => {
     this.setState((state) => ({
       updateActive: !state.updateActive,
     }));
@@ -104,8 +87,7 @@ class PropertyIndex extends Component<Props, State> {
           properties={this.state.properties}
           token={this.props.token}
           fetchProperties={this.fetchProperties}
-          editUpdateProperty={this.editUpdateProperty}
-          toggleActive={this.toggleActive}
+          togglePropertyEdit={this.togglePropertyEdit}
           updateActive={this.state.updateActive}
         />
       </div>

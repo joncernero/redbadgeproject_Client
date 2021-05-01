@@ -13,6 +13,7 @@ interface State {
 
 interface Props {
   token: string;
+  fetchUnits: Function;
 }
 
 class UnitCreate extends Component<Props, State> {

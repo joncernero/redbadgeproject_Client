@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import PropertyIndex from '../contents/property/PropertyIndex';
 
 interface State {}
 
@@ -16,7 +15,7 @@ export class Dashboard extends Component<Props, State> {
   render() {
     return (
       <div>
-        <PropertyIndex token={this.props.token} />
+        <h1>DASHBOARD</h1>
       </div>
     );
   }
