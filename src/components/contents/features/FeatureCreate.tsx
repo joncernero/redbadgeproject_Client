@@ -11,6 +11,7 @@ interface State {
 
 interface Props {
   token: string;
+  fetchFeatures: Function;
 }
 
 class FeatureCreate extends Component<Props, State> {

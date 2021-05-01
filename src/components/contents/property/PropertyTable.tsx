@@ -44,7 +44,6 @@ class PropertyTable extends Component<Props, State> {
   };
 
   propertiesMapper = () => {
-    console.log(this.props.properties);
     return this.props.properties.map((property: Property, index) => {
       return (
         <tr key={index}>
