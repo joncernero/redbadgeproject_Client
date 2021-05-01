@@ -13,6 +13,7 @@ interface State {
 
 interface Props {
   token: string;
+  fetchProperties: Function;
 }
 
 class PropertyCreate extends Component<Props, State> {
@@ -59,6 +60,9 @@ class PropertyCreate extends Component<Props, State> {
           numberOfUnits: 0,
           companyId: 1,
         });
+      })
+      .then(() => {
+        this.props.fetchProperties();
       });
   };
 

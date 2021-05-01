@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Dashboard } from './components/contents/Dashboard';
-import PropertyIndex from './components/contents/property/PropertyCreate';
+import PropertyIndex from './components/contents/property/PropertyIndex';
 import UnitIndex from './components/contents/units/UnitCreate';
 import FeatureIndex from './components/contents/features/FeatureCreate';
 import PhotoIndex from './components/contents/photos/PhotoCreate';

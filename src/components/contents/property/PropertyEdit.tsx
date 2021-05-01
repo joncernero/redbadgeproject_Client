@@ -53,7 +53,7 @@ class PropertyEdit extends Component<Props, State> {
 
   propertyUpdate = (e: React.SyntheticEvent): void => {
     e.preventDefault();
-    fetch(`${APIURL}/property/${this.props.propertiesToUpdate.id}`, {
+    fetch(`${APIURL}/property/update/${this.props.propertiesToUpdate.id}`, {
       method: 'Put',
       body: JSON.stringify({
         name: this.state.editName,
@@ -65,7 +65,7 @@ class PropertyEdit extends Component<Props, State> {
       }),
       headers: new Headers({
         'Content-type': 'application/json',
-        Authorization: this.props.token,
+        Authorization: `${localStorage.getItem('token')}`,
       }),
     })
       .then((res) => res.json())

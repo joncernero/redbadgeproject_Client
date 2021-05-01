@@ -3,6 +3,7 @@ import APIURL from '../../../utilities/Environments';
 import PropertyCreate from './PropertyCreate';
 import PropertyEdit from './PropertyEdit';
 import PropertyTable from './PropertyTable';
+import { Spinner } from 'reactstrap';
 
 interface Property {
   id: number;
@@ -19,6 +20,7 @@ interface State {
   properties: Property[];
   updateActive: boolean;
   propertiesToUpdate: Property;
+  isLoading: boolean;
 }
 
 interface Props {
@@ -41,20 +43,25 @@ class PropertyIndex extends Component<Props, State> {
         numberOfUnits: 0,
         companyId: 0,
       },
+      isLoading: false,
     };
   }
 
   fetchProperties = () => {
-    fetch(`${APIURL}/property`, {
+    this.setState({ isLoading: true });
+    fetch(`${APIURL}/property/`, {
       method: 'GET',
       headers: new Headers({
         'Content-Type': 'application/json',
-        Authorization: this.props.token,
+        Authorization: `${localStorage.getItem('token')}`,
       }),
     })
       .then((res) => res.json())
       .then((property) => {
         this.setState({ properties: property });
+      })
+      .finally(() => {
+        this.setState({ isLoading: false });
       });
   };
 
@@ -75,7 +82,7 @@ class PropertyIndex extends Component<Props, State> {
 
   toggleActive = () => {
     this.setState((state) => ({
-      updateActive: true,
+      updateActive: !state.updateActive,
     }));
   };
 
@@ -84,24 +91,23 @@ class PropertyIndex extends Component<Props, State> {
   }
 
   render() {
+    if (this.state.isLoading) {
+      return <h1>fetching</h1>;
+    }
     return (
       <div>
-        <PropertyCreate token={this.props.token} />
+        <PropertyCreate
+          token={this.props.token}
+          fetchProperties={this.fetchProperties}
+        />
         <PropertyTable
           properties={this.state.properties}
           token={this.props.token}
           fetchProperties={this.fetchProperties}
           editUpdateProperty={this.editUpdateProperty}
           toggleActive={this.toggleActive}
+          updateActive={this.state.updateActive}
         />
-        {this.state.updateActive ? (
-          <PropertyEdit
-            propertiesToUpdate={this.state.propertiesToUpdate}
-            token={this.props.token}
-            toggleActive={this.toggleActive}
-            fetchProperties={this.fetchProperties}
-          />
-        ) : null}
       </div>
     );
   }
