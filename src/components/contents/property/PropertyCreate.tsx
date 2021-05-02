@@ -50,7 +50,6 @@ class PropertyCreate extends Component<Props, State> {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         this.setState({
           name: '',
           streetAddress: '',

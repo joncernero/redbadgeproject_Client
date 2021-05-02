@@ -99,8 +99,12 @@ export class App extends Component<{}, Token> {
             />
             <Route path='/dashboard'>{this.protectedViews('dashboard')}</Route>
             <Route path='/property'>{this.protectedViews('property')}</Route>
-            <Route path='/units'>{this.protectedViews('units')}</Route>
-            <Route path='/feature'>{this.protectedViews('feature')}</Route>
+            <Route path='/units/:propertyId'>
+              {this.protectedViews('units')}
+            </Route>
+            <Route path='/feature/:unitId'>
+              {this.protectedViews('feature')}
+            </Route>
             <Route path='/photos'>{this.protectedViews('photos')}</Route>
             <Route path='/admin'>{this.protectedViews('admin')}</Route>
           </Switch>

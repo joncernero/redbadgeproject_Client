@@ -47,7 +47,9 @@ class Navbar extends Component<Props, State> {
                 <FaIcons.FaBars onClick={this.toggleSidebar} />
               </MenuBars>
             </Link>
-            <h1>diligence</h1>
+            <Link to='/dashboard'>
+              <h1>diligence</h1>
+            </Link>
             {localStorage.getItem('token') ? (
               <button
                 onClick={() => {

@@ -47,7 +47,6 @@ class Login extends Component<Props, State> {
         if (data.sessionToken) {
           this.props.updateToken(data.sessionToken);
           localStorage.setItem('token', data.sessionToken);
-          console.log(data.sessionToken);
           this.props.history.push('/dashboard');
         } else {
           this.resetState();

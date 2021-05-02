@@ -44,7 +44,6 @@ class UnitTable extends Component<Props, State> {
   };
 
   unitsMapper = () => {
-    console.log(this.props.units);
     return this.props.units.map((unit: Unit, index) => {
       return (
         <tr key={index}>

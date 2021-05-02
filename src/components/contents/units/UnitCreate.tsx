@@ -8,12 +8,12 @@ interface State {
   numberOfBeds: number;
   numberOfBaths: number;
   totalSquareFootage: number;
-  propertyId: number;
 }
 
 interface Props {
   token: string;
   fetchUnits: Function;
+  propertyId?: string;
 }
 
 class UnitCreate extends Component<Props, State> {
@@ -26,7 +26,6 @@ class UnitCreate extends Component<Props, State> {
       numberOfBeds: 0,
       numberOfBaths: 0,
       totalSquareFootage: 0,
-      propertyId: 0,
     };
   }
 
@@ -42,7 +41,7 @@ class UnitCreate extends Component<Props, State> {
           numberOfBeds: this.state.numberOfBeds,
           numberOfBaths: this.state.numberOfBeds,
           totalSquareFootage: this.state.totalSquareFootage,
-          propertyId: this.state.propertyId,
+          propertyId: Number(this.props.propertyId),
         },
       }),
       headers: new Headers({
@@ -52,7 +51,6 @@ class UnitCreate extends Component<Props, State> {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         this.setState({
           name: '',
           unitNumber: '',
@@ -60,7 +58,6 @@ class UnitCreate extends Component<Props, State> {
           numberOfBeds: 0,
           numberOfBaths: 0,
           totalSquareFootage: 0,
-          propertyId: 0,
         });
       });
   };
@@ -120,16 +117,6 @@ class UnitCreate extends Component<Props, State> {
               value={this.state.totalSquareFootage}
               onChange={(e) =>
                 this.setState({ totalSquareFootage: Number(e.target.value) })
-              }
-            />
-          </div>
-          <div>
-            <label htmlFor='propertyId'>Property:</label>
-            <input
-              name='propetyId'
-              value={this.state.propertyId}
-              onChange={(e) =>
-                this.setState({ propertyId: Number(e.target.value) })
               }
             />
           </div>

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import APIURL from '../../../utilities/Environments';
 import UnitCreate from './UnitCreate';
 import UnitTable from './UnitTable';
+import { withRouter, RouteComponentProps } from 'react-router-dom';
 
 interface Unit {
   id: number;
@@ -21,7 +22,10 @@ interface State {
   isLoading: boolean;
 }
 
-interface Props {
+type PathParamsType = {
+  propertyId: string | undefined;
+};
+interface Props extends RouteComponentProps<PathParamsType> {
   token: string;
 }
 
@@ -44,6 +48,8 @@ class UnitIndex extends Component<Props, State> {
       isLoading: false,
     };
   }
+
+  propertyId = this.props.match.params.propertyId;
 
   fetchUnits = () => {
     this.setState({ isLoading: true });
@@ -76,7 +82,11 @@ class UnitIndex extends Component<Props, State> {
   render() {
     return (
       <div>
-        <UnitCreate token={this.props.token} fetchUnits={this.fetchUnits} />
+        <UnitCreate
+          token={this.props.token}
+          fetchUnits={this.fetchUnits}
+          propertyId={this.propertyId}
+        />
         <UnitTable
           token={this.props.token}
           units={this.state.units}
@@ -89,4 +99,4 @@ class UnitIndex extends Component<Props, State> {
   }
 }
 
-export default UnitIndex;
+export default withRouter(UnitIndex);

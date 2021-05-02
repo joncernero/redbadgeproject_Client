@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import APIURL from '../../../utilities/Environments';
 import PropertyEdit from './PropertyEdit';
+import { withRouter, RouteComponentProps } from 'react-router-dom';
 
 interface Property {
   id: number;
@@ -13,7 +14,7 @@ interface Property {
   companyId: number;
 }
 
-interface Props {
+interface Props extends RouteComponentProps {
   token: string;
   properties: Property[];
   fetchProperties: Function;
@@ -46,8 +47,9 @@ class PropertyTable extends Component<Props, State> {
   propertiesMapper = () => {
     return this.props.properties.map((property: Property, index) => {
       return (
-        <tr key={index}>
-          <th scope='row'>{property.id}</th>
+        <tr
+          key={index}
+          onClick={() => this.props.history.push(`/units/${property.id}`)}>
           <td>{property.name}</td>
           <td>{property.streetAddress}</td>
           <td>{property.city}</td>
@@ -110,4 +112,4 @@ class PropertyTable extends Component<Props, State> {
   }
 }
 
-export default PropertyTable;
+export default withRouter(PropertyTable);
