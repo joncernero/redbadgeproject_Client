@@ -6,12 +6,12 @@ interface State {
   roomType: string;
   value: string;
   notes: string;
-  unitId: number;
 }
 
 interface Props {
   token: string;
   fetchFeatures: Function;
+  unitId?: string;
 }
 
 class FeatureCreate extends Component<Props, State> {
@@ -22,7 +22,6 @@ class FeatureCreate extends Component<Props, State> {
       roomType: '',
       value: '',
       notes: '',
-      unitId: 0,
     };
   }
 
@@ -36,7 +35,7 @@ class FeatureCreate extends Component<Props, State> {
           roomType: this.state.roomType,
           value: this.state.value,
           notes: this.state.notes,
-          unitId: this.state.unitId,
+          unitId: Number(this.props.unitId),
         },
       }),
       headers: new Headers({
@@ -51,7 +50,6 @@ class FeatureCreate extends Component<Props, State> {
           roomType: '',
           value: '',
           notes: '',
-          unitId: 0,
         });
       });
   };
@@ -89,16 +87,6 @@ class FeatureCreate extends Component<Props, State> {
               name='notes'
               value={this.state.notes}
               onChange={(e) => this.setState({ notes: e.target.value })}
-            />
-          </div>
-          <div>
-            <label htmlFor='unitId'>Unit:</label>
-            <input
-              name='unitId'
-              value={this.state.unitId}
-              onChange={(e) =>
-                this.setState({ unitId: Number(e.target.value) })
-              }
             />
           </div>
           <button type='submit'>Add Feature</button>

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import APIURL from '../../../utilities/Environments';
 import UnitEdit from './UnitEdit';
+import { withRouter, RouteComponentProps } from 'react-router-dom';
 
 interface Unit {
   id: number;
@@ -17,7 +18,7 @@ interface State {
   editingUnit: Unit | undefined;
 }
 
-interface Props {
+interface Props extends RouteComponentProps {
   token: string;
   units: Unit[];
   fetchUnits: Function;
@@ -46,7 +47,9 @@ class UnitTable extends Component<Props, State> {
   unitsMapper = () => {
     return this.props.units.map((unit: Unit, index) => {
       return (
-        <tr key={index}>
+        <tr
+          key={index}
+          onClick={() => this.props.history.push(`/feature/${unit.id}`)}>
           <th scope='row'>{unit.id}</th>
           <td>{unit.name}</td>
           <td>{unit.unitNumber}</td>
@@ -111,4 +114,4 @@ class UnitTable extends Component<Props, State> {
   }
 }
 
-export default UnitTable;
+export default withRouter(UnitTable);

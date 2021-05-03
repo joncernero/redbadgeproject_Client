@@ -8,7 +8,6 @@ interface State {
   state: string;
   zipcode: string;
   numberOfUnits: number;
-  companyId: number;
 }
 
 interface Props {
@@ -26,7 +25,6 @@ class PropertyCreate extends Component<Props, State> {
       state: '',
       zipcode: '',
       numberOfUnits: 0,
-      companyId: 1,
     };
   }
 
@@ -57,7 +55,6 @@ class PropertyCreate extends Component<Props, State> {
           state: '',
           zipcode: '',
           numberOfUnits: 0,
-          companyId: 1,
         });
       })
       .then(() => {
@@ -116,16 +113,6 @@ class PropertyCreate extends Component<Props, State> {
               value={this.state.numberOfUnits}
               onChange={(e) =>
                 this.setState({ numberOfUnits: Number(e.target.value) })
-              }
-            />
-          </div>
-          <div>
-            <label htmlFor='companyId'>Company:</label>
-            <input
-              name='CompanyId'
-              value={this.state.companyId}
-              onChange={(e) =>
-                this.setState({ companyId: Number(e.target.value) })
               }
             />
           </div>

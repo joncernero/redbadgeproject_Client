@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import APIURL from '../../../utilities/Environments';
 import FeatureCreate from './FeatureCreate';
 import PropertyTable from './FeatureTable';
+import { withRouter, RouteComponentProps } from 'react-router-dom';
 
 interface Feature {
   id: number;
@@ -19,7 +20,11 @@ interface State {
   isLoading: boolean;
 }
 
-interface Props {
+type PathParamsType = {
+  unitId: string | undefined;
+};
+
+interface Props extends RouteComponentProps<PathParamsType> {
   token: string;
 }
 
@@ -40,6 +45,8 @@ class FeatureIndex extends Component<Props, State> {
       isLoading: false,
     };
   }
+
+  unitId = this.props.match.params.unitId;
 
   fetchFeatures = () => {
     this.setState({ isLoading: true });
@@ -91,4 +98,4 @@ class FeatureIndex extends Component<Props, State> {
   }
 }
 
-export default FeatureIndex;
+export default withRouter(FeatureIndex);
