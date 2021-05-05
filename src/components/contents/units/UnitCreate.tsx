@@ -59,6 +59,9 @@ class UnitCreate extends Component<Props, State> {
           numberOfBaths: 0,
           totalSquareFootage: 0,
         });
+      })
+      .then(() => {
+        this.props.fetchUnits();
       });
   };
 

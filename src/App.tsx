@@ -66,7 +66,7 @@ export class App extends Component<{}, Token> {
     if (pageToShow === 'units') {
       component = <UnitIndex token={this.state.SessionToken} />;
     }
-    if (pageToShow === 'feature') {
+    if (pageToShow === 'features') {
       component = <FeatureIndex token={this.state.SessionToken} />;
     }
     if (pageToShow === 'photos') {
@@ -102,8 +102,8 @@ export class App extends Component<{}, Token> {
             <Route path='/units/:propertyId'>
               {this.protectedViews('units')}
             </Route>
-            <Route path='/feature/:unitId'>
-              {this.protectedViews('feature')}
+            <Route path='/features/:unitId'>
+              {this.protectedViews('features')}
             </Route>
             <Route path='/photos'>{this.protectedViews('photos')}</Route>
             <Route path='/admin'>{this.protectedViews('admin')}</Route>

@@ -47,10 +47,10 @@ class PropertyTable extends Component<Props, State> {
   propertiesMapper = () => {
     return this.props.properties.map((property: Property, index) => {
       return (
-        <tr
-          key={index}
-          onClick={() => this.props.history.push(`/units/${property.id}`)}>
-          <td>{property.name}</td>
+        <tr key={index}>
+          <td onClick={() => this.props.history.push(`/units/${property.id}`)}>
+            {property.name}
+          </td>
           <td>{property.streetAddress}</td>
           <td>{property.city}</td>
           <td>{property.state}</td>

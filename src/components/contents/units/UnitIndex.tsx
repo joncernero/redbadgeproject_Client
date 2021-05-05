@@ -53,7 +53,7 @@ class UnitIndex extends Component<Props, State> {
 
   fetchUnits = () => {
     this.setState({ isLoading: true });
-    fetch(`${APIURL}/unit/`, {
+    fetch(`${APIURL}/unit/${this.propertyId}`, {
       method: 'GET',
       headers: new Headers({
         'Content-Type': 'application/json',

@@ -119,16 +119,6 @@ class PropertyCreate extends Component<Props, State> {
               }
             />
           </div>
-          <div>
-            <label htmlFor='companyId'>Company:</label>
-            <input
-              name='CompanyId'
-              value={this.state.companyId}
-              onChange={(e) =>
-                this.setState({ companyId: Number(e.target.value) })
-              }
-            />
-          </div>
           <button type='submit'>Create Property</button>
         </form>
       </div>

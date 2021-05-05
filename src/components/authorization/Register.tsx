@@ -102,13 +102,11 @@ export class Register extends Component<Props, State> {
     fetch(`${APIURL}/company/create`, {
       method: 'POST',
       body: JSON.stringify({
-        company: {
-          companyName: this.state.company.companyName,
-          companyAddress: this.state.company.companyAddress,
-          city: this.state.company.city,
-          state: this.state.company.state,
-          logo: this.state.company.logo,
-        },
+        companyName: this.state.company.companyName,
+        companyAddress: this.state.company.companyAddress,
+        city: this.state.company.city,
+        state: this.state.company.state,
+        logo: this.state.company.logo,
       }),
       headers: new Headers({
         'Content-Type': 'application/json',

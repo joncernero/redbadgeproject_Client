@@ -1,7 +1,6 @@
-import userEvent from '@testing-library/user-event';
 import React, { Component } from 'react';
 import { Register } from './Register';
-import APIURL from '../../utilities/Environments';
+// import APIURL from '../../utilities/Environments';
 
 interface User {
   id: number;
@@ -44,33 +43,33 @@ export class Admin extends Component<Props, State> {
     };
   }
 
-  fetchUsers = () => {
-    this.setState({ isLoading: true });
-    fetch(`${APIURL}/user`, {
-      method: 'GET',
-      headers: new Headers({
-        'Content-Type': 'application/json',
-        Authorization: `${localStorage.getItem('token')}`,
-      }),
-    })
-      .then((res) => res.json())
-      .then((user) => {
-        this.setState({ users: user });
-      })
-      .finally(() => {
-        this.setState({ isLoading: false });
-      });
-  };
+  // fetchUsers = () => {
+  //   this.setState({ isLoading: true });
+  //   fetch(`${APIURL}/user`, {
+  //     method: 'GET',
+  //     headers: new Headers({
+  //       'Content-Type': 'application/json',
+  //       Authorization: `${localStorage.getItem('token')}`,
+  //     }),
+  //   })
+  //     .then((res) => res.json())
+  //     .then((user) => {
+  //       this.setState({ users: user });
+  //     })
+  //     .finally(() => {
+  //       this.setState({ isLoading: false });
+  //     });
+  // };
 
-  toggleFeatureEdit = () => {
-    this.setState((state) => ({
-      updateActive: !state.updateActive,
-    }));
-  };
+  // toggleFeatureEdit = () => {
+  //   this.setState((state) => ({
+  //     updateActive: !state.updateActive,
+  //   }));
+  // };
 
-  componentDidMount() {
-    this.fetchUsers();
-  }
+  // componentDidMount() {
+  //   this.fetchUsers();
+  // }
 
   render() {
     return (
