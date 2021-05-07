@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import APIURL from '../../../utilities/Environments';
-import UnitCreate from './UnitCreate';
 import UnitTable from './UnitTable';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
+import { Container } from '../../../styled/Containers';
 
 interface Unit {
   id: number;
@@ -18,6 +18,7 @@ interface Unit {
 interface State {
   units: Unit[];
   updateActive: boolean;
+  createActive: boolean;
   unitToUpdate: Unit;
   isLoading: boolean;
 }
@@ -35,6 +36,7 @@ class UnitIndex extends Component<Props, State> {
     this.state = {
       units: [],
       updateActive: false,
+      createActive: false,
       unitToUpdate: {
         id: 0,
         name: '',
@@ -75,26 +77,29 @@ class UnitIndex extends Component<Props, State> {
     }));
   };
 
+  toggleUnitCreate = () => {
+    this.setState((state) => ({
+      createActive: !state.createActive,
+    }));
+  };
+
   componentDidMount() {
     this.fetchUnits();
   }
 
   render() {
     return (
-      <div>
-        <UnitCreate
-          token={this.props.token}
-          fetchUnits={this.fetchUnits}
-          propertyId={this.propertyId}
-        />
+      <Container>
         <UnitTable
           token={this.props.token}
           units={this.state.units}
           fetchUnits={this.fetchUnits}
           toggleUnitEdit={this.toggleUnitEdit}
+          toggleUnitCreate={this.toggleUnitCreate}
           updateActive={this.state.updateActive}
+          createActive={this.state.createActive}
         />
-      </div>
+      </Container>
     );
   }
 }

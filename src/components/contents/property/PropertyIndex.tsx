@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import APIURL from '../../../utilities/Environments';
-import PropertyCreate from './PropertyCreate';
 import PropertyTable from './PropertyTable';
 
 interface Property {
@@ -17,6 +16,7 @@ interface Property {
 interface State {
   properties: Property[];
   updateActive: boolean;
+  createActive: boolean;
   propertyToUpdate: Property;
   isLoading: boolean;
 }
@@ -31,6 +31,7 @@ class PropertyIndex extends Component<Props, State> {
     this.state = {
       properties: [],
       updateActive: false,
+      createActive: false,
       propertyToUpdate: {
         id: 0,
         name: '',
@@ -69,6 +70,12 @@ class PropertyIndex extends Component<Props, State> {
     }));
   };
 
+  togglePropertyCreate = () => {
+    this.setState((state) => ({
+      createActive: !state.createActive,
+    }));
+  };
+
   componentDidMount() {
     this.fetchProperties();
   }
@@ -79,15 +86,13 @@ class PropertyIndex extends Component<Props, State> {
     }
     return (
       <div>
-        <PropertyCreate
-          token={this.props.token}
-          fetchProperties={this.fetchProperties}
-        />
         <PropertyTable
           properties={this.state.properties}
           token={this.props.token}
           fetchProperties={this.fetchProperties}
           togglePropertyEdit={this.togglePropertyEdit}
+          togglePropertyCreate={this.togglePropertyCreate}
+          createActive={this.state.createActive}
           updateActive={this.state.updateActive}
         />
       </div>

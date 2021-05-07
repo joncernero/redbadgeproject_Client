@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import APIURL from '../../../utilities/Environments';
+import { CreateButton } from '../../../styled/Index';
 
 interface State {
   name: string;
@@ -14,6 +15,7 @@ interface State {
 interface Props {
   token: string;
   fetchProperties: Function;
+  togglePropertyCreate: Function;
 }
 
 class PropertyCreate extends Component<Props, State> {
@@ -62,6 +64,7 @@ class PropertyCreate extends Component<Props, State> {
       })
       .then(() => {
         this.props.fetchProperties();
+        this.props.togglePropertyCreate();
       });
   };
 
@@ -119,7 +122,7 @@ class PropertyCreate extends Component<Props, State> {
               }
             />
           </div>
-          <button type='submit'>Create Property</button>
+          <CreateButton type='submit'>Create Property</CreateButton>
         </form>
       </div>
     );

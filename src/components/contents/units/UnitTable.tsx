@@ -2,6 +2,18 @@ import React, { Component } from 'react';
 import APIURL from '../../../utilities/Environments';
 import UnitEdit from './UnitEdit';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
+import { EditButton, DeleteButton, TitleDiv } from '../../../styled/Index';
+import UnitCreate from './UnitCreate';
+
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Paper,
+} from '@material-ui/core';
 
 interface Unit {
   id: number;
@@ -23,7 +35,9 @@ interface Props extends RouteComponentProps {
   units: Unit[];
   fetchUnits: Function;
   toggleUnitEdit: Function;
+  toggleUnitCreate: Function;
   updateActive: boolean;
+  createActive: boolean;
 }
 
 class UnitTable extends Component<Props, State> {
@@ -47,17 +61,18 @@ class UnitTable extends Component<Props, State> {
   unitsMapper = () => {
     return this.props.units.map((unit: Unit, index) => {
       return (
-        <tr key={index}>
-          <td onClick={() => this.props.history.push(`/features/${unit.id}`)}>
+        <TableRow key={index}>
+          <TableCell
+            onClick={() => this.props.history.push(`/features/${unit.id}`)}>
             {unit.name}
-          </td>
-          <td>{unit.unitNumber}</td>
-          <td>{unit.bldgNumber}</td>
-          <td>{unit.numberOfBeds}</td>
-          <td>{unit.numberOfBaths}</td>
-          <td>{unit.totalSquareFootage}</td>
-          <td>
-            <button
+          </TableCell>
+          <TableCell>{unit.unitNumber}</TableCell>
+          <TableCell>{unit.bldgNumber}</TableCell>
+          <TableCell>{unit.numberOfBeds}</TableCell>
+          <TableCell>{unit.numberOfBaths}</TableCell>
+          <TableCell>{unit.totalSquareFootage}</TableCell>
+          <TableCell>
+            <EditButton
               onClick={() => {
                 this.setState({
                   editingUnit: unit,
@@ -65,17 +80,17 @@ class UnitTable extends Component<Props, State> {
                 this.props.toggleUnitEdit();
               }}>
               Edit
-            </button>
-          </td>
-          <td>
-            <button
+            </EditButton>
+          </TableCell>
+          <TableCell>
+            <DeleteButton
               onClick={() => {
                 this.deleteUnit(unit);
               }}>
               Delete
-            </button>
-          </td>
-        </tr>
+            </DeleteButton>
+          </TableCell>
+        </TableRow>
       );
     });
   };
@@ -83,22 +98,38 @@ class UnitTable extends Component<Props, State> {
     return (
       <>
         <div>
-          <h1>Units</h1>
+          {this.props.createActive ? (
+            <UnitCreate
+              token={this.props.token}
+              fetchUnits={this.props.fetchUnits}
+              toggleUnitCreate={this.props.toggleUnitCreate}
+            />
+          ) : null}
+          <TitleDiv>
+            <h1>Units</h1>
+            <button
+              onClick={() => {
+                this.props.toggleUnitCreate();
+              }}>
+              Create Unit
+            </button>
+          </TitleDiv>
           <hr />
-          <table>
-            <thead>
-              <tr>
-                <th>#</th>
-                <th>Unit Name</th>
-                <th>Unit #</th>
-                <th>Bldg #</th>
-                <th># Of Beds</th>
-                <th># Of Baths</th>
-                <th>Total SQFT</th>
-              </tr>
-            </thead>
-            <tbody>{this.unitsMapper()}</tbody>
-          </table>
+          <TableContainer component={Paper}>
+            <Table>
+              <TableHead>
+                <TableRow>
+                  <TableCell>Unit Name</TableCell>
+                  <TableCell>Unit #</TableCell>
+                  <TableCell>Bldg #</TableCell>
+                  <TableCell># Of Beds</TableCell>
+                  <TableCell># Of BaTableCells</TableCell>
+                  <TableCell>Total SQFT</TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>{this.unitsMapper()}</TableBody>
+            </Table>
+          </TableContainer>
         </div>
         {this.props.updateActive && this.state.editingUnit ? (
           <UnitEdit

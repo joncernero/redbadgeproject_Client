@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import APIURL from '../../../utilities/Environments';
+import { CreateButton } from '../../../styled/Index';
 
 interface State {
   feature: string;
@@ -11,6 +12,7 @@ interface State {
 interface Props {
   token: string;
   fetchFeatures: Function;
+  toggleFeatureCreate: Function;
   unitId?: string;
 }
 
@@ -54,6 +56,7 @@ class FeatureCreate extends Component<Props, State> {
       })
       .then(() => {
         this.props.fetchFeatures();
+        this.props.toggleFeatureCreate();
       });
   };
   render() {
@@ -92,7 +95,7 @@ class FeatureCreate extends Component<Props, State> {
               onChange={(e) => this.setState({ notes: e.target.value })}
             />
           </div>
-          <button type='submit'>Add Feature</button>
+          <CreateButton type='submit'>Add Feature</CreateButton>
         </form>
       </div>
     );

@@ -1,6 +1,11 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   max-width: 90vw;
-  margin: 0 auto;
+  height: 80vh;
+  margin: auto;
 `;

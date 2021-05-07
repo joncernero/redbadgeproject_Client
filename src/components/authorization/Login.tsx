@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import APIURL from '../../utilities/Environments';
 import { RouteComponentProps, withRouter } from 'react-router-dom';
+import { LoginDiv } from '../../styled/Index';
 
 interface State {
   email: string;
@@ -64,7 +65,7 @@ class Login extends Component<Props, State> {
   };
   render() {
     return (
-      <div>
+      <LoginDiv>
         <h1>Login</h1>
         <form onSubmit={this.handleSubmit}>
           <div>
@@ -90,10 +91,11 @@ class Login extends Component<Props, State> {
               required
             />
           </div>
-
-          <button type='submit'>Login</button>
+          <div>
+            <button type='submit'>Login</button>
+          </div>
         </form>
-      </div>
+      </LoginDiv>
     );
   }
 }

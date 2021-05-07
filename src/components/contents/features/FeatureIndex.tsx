@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import APIURL from '../../../utilities/Environments';
-import FeatureCreate from './FeatureCreate';
 import FeatureTable from './FeatureTable';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
 
@@ -16,6 +15,7 @@ interface Feature {
 interface State {
   features: Feature[];
   updateActive: boolean;
+  createActive: boolean;
   featureToUpdate: Feature;
   isLoading: boolean;
 }
@@ -34,6 +34,7 @@ class FeatureIndex extends Component<Props, State> {
     this.state = {
       features: [],
       updateActive: false,
+      createActive: false,
       featureToUpdate: {
         id: 0,
         feature: '',
@@ -73,6 +74,12 @@ class FeatureIndex extends Component<Props, State> {
     }));
   };
 
+  toggleFeatureCreate = () => {
+    this.setState((state) => ({
+      createActive: !state.createActive,
+    }));
+  };
+
   componentDidMount() {
     this.fetchFeatures();
   }
@@ -83,17 +90,14 @@ class FeatureIndex extends Component<Props, State> {
     }
     return (
       <div>
-        <FeatureCreate
-          token={this.props.token}
-          fetchFeatures={this.fetchFeatures}
-          unitId={this.unitId}
-        />
         <FeatureTable
           features={this.state.features}
           token={this.props.token}
           fetchFeatures={this.fetchFeatures}
           toggleFeatureEdit={this.toggleFeatureEdit}
+          toggleFeatureCreate={this.toggleFeatureCreate}
           updateActive={this.state.updateActive}
+          createActive={this.state.createActive}
         />
       </div>
     );

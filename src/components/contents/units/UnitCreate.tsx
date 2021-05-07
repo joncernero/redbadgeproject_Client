@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import APIURL from '../../../utilities/Environments';
+import { CreateButton } from '../../../styled/Index';
 
 interface State {
   name: string;
@@ -13,6 +14,7 @@ interface State {
 interface Props {
   token: string;
   fetchUnits: Function;
+  toggleUnitCreate: Function;
   propertyId?: string;
 }
 
@@ -62,6 +64,7 @@ class UnitCreate extends Component<Props, State> {
       })
       .then(() => {
         this.props.fetchUnits();
+        this.props.toggleUnitCreate();
       });
   };
 
@@ -123,7 +126,7 @@ class UnitCreate extends Component<Props, State> {
               }
             />
           </div>
-          <button type='submit'>Create Unit</button>
+          <CreateButton type='submit'>Create Unit</CreateButton>
         </form>
       </div>
     );

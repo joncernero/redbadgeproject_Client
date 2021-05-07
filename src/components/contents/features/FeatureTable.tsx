@@ -1,6 +1,17 @@
 import React, { Component } from 'react';
 import APIURL from '../../../utilities/Environments';
 import FeatureEdit from './FeatureEdit';
+import FeatureCreate from './FeatureCreate';
+import { EditButton, DeleteButton, TitleDiv } from '../../../styled/Index';
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Paper,
+} from '@material-ui/core';
 
 interface Feature {
   id: number;
@@ -20,7 +31,9 @@ interface Props {
   features: Feature[];
   fetchFeatures: Function;
   toggleFeatureEdit: Function;
+  toggleFeatureCreate: Function;
   updateActive: boolean;
+  createActive: boolean;
 }
 
 class FeatureTable extends Component<Props, State> {
@@ -44,31 +57,29 @@ class FeatureTable extends Component<Props, State> {
   featuresMapper = () => {
     return this.props.features.map((feature: Feature, index) => {
       return (
-        <tr key={index}>
-          <th scope='row'>{feature.id}</th>
-          <td>{feature.feature}</td>
-          <td>{feature.roomType}</td>
-          <th>{feature.value}</th>
-          <td>{feature.notes}</td>
-          <td>{feature.unitId}</td>
-          <td>
-            <button
+        <TableRow key={index}>
+          <TableCell>{feature.feature}</TableCell>
+          <TableCell>{feature.roomType}</TableCell>
+          <TableCell>{feature.value}</TableCell>
+          <TableCell>{feature.notes}</TableCell>
+          <TableCell>
+            <EditButton
               onClick={() => {
                 this.setState({ editingFeature: feature });
                 this.props.toggleFeatureEdit();
               }}>
               Edit
-            </button>
-          </td>
-          <td>
-            <button
+            </EditButton>
+          </TableCell>
+          <TableCell>
+            <DeleteButton
               onClick={() => {
                 this.deleteFeature(feature);
               }}>
               Delete
-            </button>
-          </td>
-        </tr>
+            </DeleteButton>
+          </TableCell>
+        </TableRow>
       );
     });
   };
@@ -77,20 +88,36 @@ class FeatureTable extends Component<Props, State> {
     return (
       <>
         <div>
-          <h1>Features</h1>
+          {this.props.createActive ? (
+            <FeatureCreate
+              token={this.props.token}
+              fetchFeatures={this.props.fetchFeatures}
+              toggleFeatureCreate={this.props.toggleFeatureCreate}
+            />
+          ) : null}
+          <TitleDiv>
+            <h1>Features</h1>
+            <button
+              onClick={() => {
+                this.props.toggleFeatureCreate();
+              }}>
+              New Feature
+            </button>
+          </TitleDiv>
           <hr />
-          <table>
-            <thead>
-              <tr>
-                <th>#</th>
-                <th>Feature</th>
-                <th>Room Type</th>
-                <th>Value</th>
-                <th>Notes</th>
-              </tr>
-            </thead>
-            <tbody>{this.featuresMapper()}</tbody>
-          </table>
+          <TableContainer component={Paper}>
+            <Table>
+              <TableHead>
+                <TableRow>
+                  <TableCell>Feature</TableCell>
+                  <TableCell>Room Type</TableCell>
+                  <TableCell>Value</TableCell>
+                  <TableCell>Notes</TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>{this.featuresMapper()}</TableBody>
+            </Table>
+          </TableContainer>
         </div>
         {this.props.updateActive && this.state.editingFeature ? (
           <FeatureEdit

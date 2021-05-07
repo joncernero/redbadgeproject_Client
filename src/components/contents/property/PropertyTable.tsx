@@ -1,7 +1,23 @@
 import React, { Component } from 'react';
 import APIURL from '../../../utilities/Environments';
 import PropertyEdit from './PropertyEdit';
+import PropertyCreate from './PropertyCreate';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
+import {
+  EditButton,
+  DeleteButton,
+  CreateButton,
+  TitleDiv,
+} from '../../../styled/Index';
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Paper,
+} from '@material-ui/core';
 
 interface Property {
   id: number;
@@ -19,7 +35,9 @@ interface Props extends RouteComponentProps {
   properties: Property[];
   fetchProperties: Function;
   togglePropertyEdit: Function;
+  togglePropertyCreate: Function;
   updateActive: boolean;
+  createActive: boolean;
 }
 
 interface State {
@@ -47,34 +65,35 @@ class PropertyTable extends Component<Props, State> {
   propertiesMapper = () => {
     return this.props.properties.map((property: Property, index) => {
       return (
-        <tr key={index}>
-          <td onClick={() => this.props.history.push(`/units/${property.id}`)}>
+        <TableRow key={index}>
+          <TableCell
+            onClick={() => this.props.history.push(`/units/${property.id}`)}>
             {property.name}
-          </td>
-          <td>{property.streetAddress}</td>
-          <td>{property.city}</td>
-          <td>{property.state}</td>
-          <td>{property.zipcode}</td>
-          <td>{property.numberOfUnits}</td>
-          <td>{property.companyId}</td>
-          <td>
-            <button
+          </TableCell>
+          <TableCell>{property.streetAddress}</TableCell>
+          <TableCell>{property.city}</TableCell>
+          <TableCell>{property.state}</TableCell>
+          <TableCell>{property.zipcode}</TableCell>
+          <TableCell>{property.numberOfUnits}</TableCell>
+          <TableCell>{property.companyId}</TableCell>
+          <TableCell>
+            <EditButton
               onClick={() => {
                 this.setState({ editingProperty: property });
                 this.props.togglePropertyEdit();
               }}>
               Edit
-            </button>
-          </td>
-          <td>
-            <button
+            </EditButton>
+          </TableCell>
+          <TableCell>
+            <DeleteButton
               onClick={() => {
                 this.deleteProperty(property);
               }}>
               Delete
-            </button>
-          </td>
-        </tr>
+            </DeleteButton>
+          </TableCell>
+        </TableRow>
       );
     });
   };
@@ -82,22 +101,38 @@ class PropertyTable extends Component<Props, State> {
     return (
       <>
         <div>
-          <h3>Properties</h3>
+          {this.props.createActive ? (
+            <PropertyCreate
+              token={this.props.token}
+              fetchProperties={this.props.fetchProperties}
+              togglePropertyCreate={this.props.togglePropertyCreate}
+            />
+          ) : null}
+          <TitleDiv>
+            <h1>Properties</h1>
+            <CreateButton
+              onClick={() => {
+                this.props.togglePropertyCreate();
+              }}>
+              Create Property
+            </CreateButton>
+          </TitleDiv>
           <hr />
-          <table>
-            <thead>
-              <tr>
-                <th>#</th>
-                <th>PropertyName</th>
-                <th>Street Address</th>
-                <th>City</th>
-                <th>State</th>
-                <th>Zipcode</th>
-                <th># Of Units</th>
-              </tr>
-            </thead>
-            <tbody>{this.propertiesMapper()}</tbody>
-          </table>
+          <TableContainer component={Paper}>
+            <Table>
+              <TableHead>
+                <TableRow>
+                  <TableCell>PropertyName</TableCell>
+                  <TableCell>Street Address</TableCell>
+                  <TableCell>City</TableCell>
+                  <TableCell>State</TableCell>
+                  <TableCell>Zipcode</TableCell>
+                  <TableCell># Of Units</TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>{this.propertiesMapper()}</TableBody>
+            </Table>
+          </TableContainer>
         </div>
         {this.props.updateActive && this.state.editingProperty ? (
           <PropertyEdit
