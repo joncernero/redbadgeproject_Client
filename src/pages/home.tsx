@@ -1,10 +1,21 @@
 import React, { Component } from 'react';
+import { ImageContainer, TextContainer } from '../styled/Containers';
 
 export class Home extends Component {
   render() {
     return (
       <div>
-        <h1>Home</h1>
+        <ImageContainer>
+          <TextContainer>
+            <h1>An App For Due Diligence</h1>
+            <p>
+              Gather, store, and evaluate your property with this simple app.
+              Determine the right value for your purchase or stay on budget with
+              your next renovation. No paper required!{' '}
+            </p>
+            <button>Request A Demo</button>
+          </TextContainer>
+        </ImageContainer>
       </div>
     );
   }

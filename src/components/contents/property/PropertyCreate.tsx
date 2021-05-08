@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import APIURL from '../../../utilities/Environments';
-import { CreateButton } from '../../../styled/Index';
+import { StyledModal } from '../../../styled/Modal';
+import { motion } from 'framer-motion';
 
 interface State {
   name: string;
@@ -70,8 +71,9 @@ class PropertyCreate extends Component<Props, State> {
 
   render() {
     return (
-      <div>
+      <StyledModal as={motion.div} whileHover={{ scale: 1.1 }} drag>
         <form onSubmit={this.fetchPropertyData}>
+          <h1>Create New Property</h1>
           <div>
             <label htmlFor='name'>Name:</label>
             <input
@@ -122,9 +124,9 @@ class PropertyCreate extends Component<Props, State> {
               }
             />
           </div>
-          <CreateButton type='submit'>Create Property</CreateButton>
+          <button type='submit'>Create Property</button>
         </form>
-      </div>
+      </StyledModal>
     );
   }
 }

@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import APIURL from '../../../utilities/Environments';
+import { StyledModal } from '../../../styled/Modal';
+import { motion } from 'framer-motion';
 
 interface Feature {
   id: number;
@@ -58,38 +60,36 @@ class FeatureEdit extends Component<Props, State> {
   };
   render() {
     return (
-      <div>
-        <h1>Update Edit</h1>
+      <StyledModal as={motion.div} whileHover={{ scale: 1.1 }} drag>
         <form onSubmit={this.featureUpdate}>
-          <>
-            <label htmlFor='feature'>Edit Feature:</label>
-            <input
-              name='name'
-              value={this.state.editFeature}
-              onChange={(e) => this.setState({ editFeature: e.target.value })}
-            />
-            <label htmlFor='roomType'>Edit Room Type:</label>
-            <input
-              name='roomType'
-              value={this.state.editRoomType}
-              onChange={(e) => this.setState({ editRoomType: e.target.value })}
-            />
-            <label htmlFor='value'>Edit Value:</label>
-            <input
-              name='value'
-              value={this.state.editValue}
-              onChange={(e) => this.setState({ editValue: e.target.value })}
-            />
-            <label htmlFor='notes'>Edit Notes:</label>
-            <input
-              name='notes'
-              value={this.state.editNotes}
-              onChange={(e) => this.setState({ editNotes: e.target.value })}
-            />
-          </>
+          <h1>Update Edit</h1>
+          <label htmlFor='feature'>Edit Feature:</label>
+          <input
+            name='name'
+            value={this.state.editFeature}
+            onChange={(e) => this.setState({ editFeature: e.target.value })}
+          />
+          <label htmlFor='roomType'>Edit Room Type:</label>
+          <input
+            name='roomType'
+            value={this.state.editRoomType}
+            onChange={(e) => this.setState({ editRoomType: e.target.value })}
+          />
+          <label htmlFor='value'>Edit Value:</label>
+          <input
+            name='value'
+            value={this.state.editValue}
+            onChange={(e) => this.setState({ editValue: e.target.value })}
+          />
+          <label htmlFor='notes'>Edit Notes:</label>
+          <input
+            name='notes'
+            value={this.state.editNotes}
+            onChange={(e) => this.setState({ editNotes: e.target.value })}
+          />
           <button type='submit'>Update</button>
         </form>
-      </div>
+      </StyledModal>
     );
   }
 }

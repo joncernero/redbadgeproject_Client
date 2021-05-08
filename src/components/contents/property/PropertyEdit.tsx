@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import APIURL from '../../../utilities/Environments';
+import { StyledModal } from '../../../styled/Modal';
+import { motion } from 'framer-motion';
 
 interface Property {
   id: number;
@@ -67,56 +69,52 @@ class PropertyEdit extends Component<Props, State> {
 
   render() {
     return (
-      <div>
-        <h1>Update Property</h1>
-        <div>
-          <form onSubmit={this.propertyUpdate}>
-            <>
-              <label htmlFor='name'>Edit Name:</label>
-              <input
-                name='name'
-                value={this.state.editName}
-                onChange={(e) => this.setState({ editName: e.target.value })}
-              />
-              <label htmlFor='streetAddress'>Edit Street Address:</label>
-              <input
-                name='streetAddress'
-                value={this.state.editStreetAddress}
-                onChange={(e) =>
-                  this.setState({ editStreetAddress: e.target.value })
-                }
-              />
-              <label htmlFor='city'>Edit City:</label>
-              <input
-                name='city'
-                value={this.state.editCity}
-                onChange={(e) => this.setState({ editCity: e.target.value })}
-              />
-              <label htmlFor='state'>Edit State:</label>
-              <input
-                name='state'
-                value={this.state.editState}
-                onChange={(e) => this.setState({ editState: e.target.value })}
-              />
-              <label htmlFor='zipcode'>Edit Zipcode:</label>
-              <input
-                name='zipcode'
-                value={this.state.editZipcode}
-                onChange={(e) => this.setState({ editZipcode: e.target.value })}
-              />
-              <label htmlFor='numberOfUnits'>Edit Number Of Units:</label>
-              <input
-                name='numberOfUnits'
-                value={this.state.editNumberOfUnits}
-                onChange={(e) =>
-                  this.setState({ editNumberOfUnits: Number(e.target.value) })
-                }
-              />
-            </>
-            <button type='submit'>Update</button>
-          </form>
-        </div>
-      </div>
+      <StyledModal as={motion.div} whileHover={{ scale: 1.1 }} drag>
+        <form onSubmit={this.propertyUpdate}>
+          <h1>Update Property</h1>
+          <label htmlFor='name'>Edit Name:</label>
+          <input
+            name='name'
+            value={this.state.editName}
+            onChange={(e) => this.setState({ editName: e.target.value })}
+          />
+          <label htmlFor='streetAddress'>Edit Street Address:</label>
+          <input
+            name='streetAddress'
+            value={this.state.editStreetAddress}
+            onChange={(e) =>
+              this.setState({ editStreetAddress: e.target.value })
+            }
+          />
+          <label htmlFor='city'>Edit City:</label>
+          <input
+            name='city'
+            value={this.state.editCity}
+            onChange={(e) => this.setState({ editCity: e.target.value })}
+          />
+          <label htmlFor='state'>Edit State:</label>
+          <input
+            name='state'
+            value={this.state.editState}
+            onChange={(e) => this.setState({ editState: e.target.value })}
+          />
+          <label htmlFor='zipcode'>Edit Zipcode:</label>
+          <input
+            name='zipcode'
+            value={this.state.editZipcode}
+            onChange={(e) => this.setState({ editZipcode: e.target.value })}
+          />
+          <label htmlFor='numberOfUnits'>Edit Number Of Units:</label>
+          <input
+            name='numberOfUnits'
+            value={this.state.editNumberOfUnits}
+            onChange={(e) =>
+              this.setState({ editNumberOfUnits: Number(e.target.value) })
+            }
+          />
+          <button type='submit'>Update</button>
+        </form>
+      </StyledModal>
     );
   }
 }

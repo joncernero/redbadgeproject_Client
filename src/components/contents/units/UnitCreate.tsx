@@ -1,38 +1,62 @@
 import React, { Component } from 'react';
 import APIURL from '../../../utilities/Environments';
-import { CreateButton } from '../../../styled/Index';
+import { StyledModal } from '../../../styled/Modal';
+import { motion } from 'framer-motion';
+import { withRouter, RouteComponentProps } from 'react-router-dom';
 
-interface State {
+interface Unit {
+  id: number;
   name: string;
   unitNumber: string;
   bldgNumber: string;
   numberOfBeds: number;
   numberOfBaths: number;
   totalSquareFootage: number;
+  propertyId: number;
 }
 
-interface Props {
+interface State {
+  units: Unit[];
+  name: string;
+  unitNumber: string;
+  bldgNumber: string;
+  numberOfBeds: number;
+  numberOfBaths: number;
+  totalSquareFootage: number;
+  propertyId: number;
+}
+
+type PathParamsType = {
+  propertyId: string | undefined;
+};
+
+interface Props extends RouteComponentProps<PathParamsType> {
   token: string;
   fetchUnits: Function;
   toggleUnitCreate: Function;
-  propertyId?: string;
+  propertyId?: number;
 }
 
 class UnitCreate extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
     this.state = {
+      units: [],
       name: '',
       unitNumber: '',
       bldgNumber: '',
       numberOfBeds: 0,
       numberOfBaths: 0,
       totalSquareFootage: 0,
+      propertyId: 0,
     };
   }
 
+  propertyId = this.props.match.params.propertyId;
+
   fetchUnitData = (e: React.FormEvent): void => {
     e.preventDefault();
+    console.log(this.propertyId);
     fetch(`${APIURL}/unit/create`, {
       method: 'POST',
       body: JSON.stringify({
@@ -43,7 +67,7 @@ class UnitCreate extends Component<Props, State> {
           numberOfBeds: this.state.numberOfBeds,
           numberOfBaths: this.state.numberOfBeds,
           totalSquareFootage: this.state.totalSquareFootage,
-          propertyId: Number(this.props.propertyId),
+          propertyId: Number(this.propertyId),
         },
       }),
       headers: new Headers({
@@ -70,8 +94,9 @@ class UnitCreate extends Component<Props, State> {
 
   render() {
     return (
-      <div>
+      <StyledModal as={motion.div} whileHover={{ scale: 1.1 }} drag>
         <form onSubmit={this.fetchUnitData}>
+          <h1>Create Unit</h1>
           <div>
             <label htmlFor='name'>Name:</label>
             <input
@@ -126,10 +151,10 @@ class UnitCreate extends Component<Props, State> {
               }
             />
           </div>
-          <CreateButton type='submit'>Create Unit</CreateButton>
+          <button type='submit'>Create Unit</button>
         </form>
-      </div>
+      </StyledModal>
     );
   }
 }
-export default UnitCreate;
+export default withRouter(UnitCreate);

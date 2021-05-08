@@ -17,7 +17,6 @@ export class Dashboard extends Component<Props, State> {
   render() {
     return (
       <Container>
-        <h1>DASHBOARD</h1>
         <PropertyIndex token={this.props.token} />
       </Container>
     );

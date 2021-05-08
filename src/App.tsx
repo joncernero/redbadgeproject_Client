@@ -16,7 +16,7 @@ import Login from './components/authorization/Login';
 import Navbar from './components/navigation/Navbar';
 import { Home } from './pages/Home';
 import { About } from './pages/About';
-import { Admin } from './components/authorization/Admin';
+import Admin from './components/authorization/Admin';
 
 export interface Token {
   SessionToken: string;
@@ -35,8 +35,6 @@ export class App extends Component<{}, Token> {
     localStorage.setItem('token', newToken);
     this.setState({
       SessionToken: newToken,
-      // email: newEmail,
-      // role: newRole,
     });
   };
   componentDidMount() {}
@@ -46,9 +44,6 @@ export class App extends Component<{}, Token> {
     this.setState({
       SessionToken: '',
     });
-    // if (this.state.SessionToken === '') {
-    //   return <Redirect to='/home' />;
-    // }
   };
 
   protectedViews = (pageToShow: any) => {

@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { Register } from './Register';
-// import APIURL from '../../utilities/Environments';
+import APIURL from '../../utilities/Environments';
+import UserTable from './UserTable';
+import { TitleDiv } from '../../styled/Index';
+import { withRouter, RouteComponentProps } from 'react-router-dom';
 
 interface User {
   id: number;
@@ -19,9 +22,12 @@ interface State {
   isLoading: boolean;
 }
 
-interface Props {
+type PathParamsType = {
+  companyId: string | undefined;
+};
+
+interface Props extends RouteComponentProps<PathParamsType> {
   token: string;
-  // role: string;
 }
 
 export class Admin extends Component<Props, State> {
@@ -43,39 +49,51 @@ export class Admin extends Component<Props, State> {
     };
   }
 
-  // fetchUsers = () => {
-  //   this.setState({ isLoading: true });
-  //   fetch(`${APIURL}/user`, {
-  //     method: 'GET',
-  //     headers: new Headers({
-  //       'Content-Type': 'application/json',
-  //       Authorization: `${localStorage.getItem('token')}`,
-  //     }),
-  //   })
-  //     .then((res) => res.json())
-  //     .then((user) => {
-  //       this.setState({ users: user });
-  //     })
-  //     .finally(() => {
-  //       this.setState({ isLoading: false });
-  //     });
-  // };
+  companyId = this.props.match.params.companyId;
 
-  // toggleFeatureEdit = () => {
-  //   this.setState((state) => ({
-  //     updateActive: !state.updateActive,
-  //   }));
-  // };
+  fetchUsers = () => {
+    this.setState({ isLoading: true });
+    fetch(`${APIURL}/user/`, {
+      method: 'GET',
+      headers: new Headers({
+        'Content-Type': 'application/json',
+        Authorization: `${localStorage.getItem('token')}`,
+      }),
+    })
+      .then((res) => res.json())
+      .then((user) => {
+        this.setState({ users: user });
+      })
+      .finally(() => {
+        this.setState({ isLoading: false });
+      });
+  };
 
-  // componentDidMount() {
-  //   this.fetchUsers();
-  // }
+  toggleUserEdit = () => {
+    this.setState((state) => ({
+      updateActive: !state.updateActive,
+    }));
+  };
+
+  componentDidMount() {
+    this.fetchUsers();
+  }
 
   render() {
     return (
       <div>
-        <Register token={this.props.token} />
+        <TitleDiv>
+          <Register token={this.props.token} fetchUsers={this.fetchUsers} />
+        </TitleDiv>
+        <UserTable
+          users={this.state.users}
+          token={this.props.token}
+          fetchUsers={this.fetchUsers}
+          toggleUserEdit={this.toggleUserEdit}
+          updateActive={this.state.updateActive}></UserTable>
       </div>
     );
   }
 }
+
+export default withRouter(Admin);

@@ -1,15 +1,31 @@
 import React, { Component } from 'react';
 import APIURL from '../../../utilities/Environments';
-import { CreateButton } from '../../../styled/Index';
+import { StyledModal } from '../../../styled/Modal';
+import { withRouter, RouteComponentProps } from 'react-router-dom';
+import { motion } from 'framer-motion';
+
+interface Feature {
+  id: number;
+  feature: string;
+  roomType: string;
+  value: string;
+  notes: string;
+  unitId: number;
+}
 
 interface State {
+  features: Feature[];
   feature: string;
   roomType: string;
   value: string;
   notes: string;
 }
 
-interface Props {
+type PathParamsType = {
+  unitId: string | undefined;
+};
+
+interface Props extends RouteComponentProps<PathParamsType> {
   token: string;
   fetchFeatures: Function;
   toggleFeatureCreate: Function;
@@ -20,6 +36,7 @@ class FeatureCreate extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
     this.state = {
+      features: [],
       feature: '',
       roomType: '',
       value: '',
@@ -27,8 +44,11 @@ class FeatureCreate extends Component<Props, State> {
     };
   }
 
+  unitId = this.props.match.params.unitId;
+
   fetchFeatureData = (e: React.FormEvent): void => {
     e.preventDefault();
+    console.log(this.unitId);
     fetch(`${APIURL}/feature/create`, {
       method: 'POST',
       body: JSON.stringify({
@@ -37,7 +57,7 @@ class FeatureCreate extends Component<Props, State> {
           roomType: this.state.roomType,
           value: this.state.value,
           notes: this.state.notes,
-          unitId: Number(this.props.unitId),
+          unitId: Number(this.unitId),
         },
       }),
       headers: new Headers({
@@ -61,8 +81,9 @@ class FeatureCreate extends Component<Props, State> {
   };
   render() {
     return (
-      <div>
+      <StyledModal as={motion.div} whileHover={{ scale: 1.1 }} drag>
         <form onSubmit={this.fetchFeatureData}>
+          <h1>Create New Feature</h1>
           <div>
             <label htmlFor='feature'>Feature:</label>
             <input
@@ -95,11 +116,11 @@ class FeatureCreate extends Component<Props, State> {
               onChange={(e) => this.setState({ notes: e.target.value })}
             />
           </div>
-          <CreateButton type='submit'>Add Feature</CreateButton>
+          <button type='submit'>Add Feature</button>
         </form>
-      </div>
+      </StyledModal>
     );
   }
 }
 
-export default FeatureCreate;
+export default withRouter(FeatureCreate);

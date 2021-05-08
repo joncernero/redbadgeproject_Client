@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import APIURL from '../../../utilities/Environments';
+import { StyledModal } from '../../../styled/Modal';
+import { motion } from 'framer-motion';
 
 interface Unit {
   id: number;
@@ -67,62 +69,56 @@ class UnitEdit extends Component<Props, State> {
 
   render() {
     return (
-      <div>
-        <h1>Update Unit</h1>
-        <div>
-          <form onSubmit={this.unitUpdate}>
-            <>
-              <label htmlFor='name'>EditName:</label>
-              <input
-                name='name'
-                value={this.state.editName}
-                onChange={(e) => this.setState({ editName: e.target.value })}
-              />
-              <label htmlFor='unitNumber'>Edit Unit #:</label>
-              <input
-                name='unitNumber'
-                value={this.state.editUnitNumber}
-                onChange={(e) =>
-                  this.setState({ editUnitNumber: e.target.value })
-                }
-              />
-              <label htmlFor='bldgNumber'>Edit Bldg #:</label>
-              <input
-                name='bldgNumber'
-                value={this.state.editBldgNumber}
-                onChange={(e) => this.setState({ editName: e.target.value })}
-              />
-              <label htmlFor='name'>Edit # Of Beds:</label>
-              <input
-                name='numberOfBeds'
-                value={this.state.editNumberOfBeds}
-                onChange={(e) =>
-                  this.setState({ editNumberOfBeds: Number(e.target.value) })
-                }
-              />
-              <label htmlFor='numberOfBaths'>Edit # of Baths:</label>
-              <input
-                name='numberOfBaths'
-                value={this.state.editNumberOfBaths}
-                onChange={(e) =>
-                  this.setState({ editNumberOfBaths: Number(e.target.value) })
-                }
-              />
-              <label htmlFor='totalSquareFootage'>Total SQFT:</label>
-              <input
-                name='totalSquareFootage'
-                value={this.state.editTotalSquareFootage}
-                onChange={(e) =>
-                  this.setState({
-                    editTotalSquareFootage: Number(e.target.value),
-                  })
-                }
-              />
-            </>
-            <button type='submit'>Update</button>
-          </form>
-        </div>
-      </div>
+      <StyledModal as={motion.div} whileHover={{ scale: 1.1 }} drag>
+        <form onSubmit={this.unitUpdate}>
+          <h1>Update Unit</h1>
+          <label htmlFor='name'>EditName:</label>
+          <input
+            name='name'
+            value={this.state.editName}
+            onChange={(e) => this.setState({ editName: e.target.value })}
+          />
+          <label htmlFor='unitNumber'>Edit Unit #:</label>
+          <input
+            name='unitNumber'
+            value={this.state.editUnitNumber}
+            onChange={(e) => this.setState({ editUnitNumber: e.target.value })}
+          />
+          <label htmlFor='bldgNumber'>Edit Bldg #:</label>
+          <input
+            name='bldgNumber'
+            value={this.state.editBldgNumber}
+            onChange={(e) => this.setState({ editName: e.target.value })}
+          />
+          <label htmlFor='name'>Edit # Of Beds:</label>
+          <input
+            name='numberOfBeds'
+            value={this.state.editNumberOfBeds}
+            onChange={(e) =>
+              this.setState({ editNumberOfBeds: Number(e.target.value) })
+            }
+          />
+          <label htmlFor='numberOfBaths'>Edit # of Baths:</label>
+          <input
+            name='numberOfBaths'
+            value={this.state.editNumberOfBaths}
+            onChange={(e) =>
+              this.setState({ editNumberOfBaths: Number(e.target.value) })
+            }
+          />
+          <label htmlFor='totalSquareFootage'>Total SQFT:</label>
+          <input
+            name='totalSquareFootage'
+            value={this.state.editTotalSquareFootage}
+            onChange={(e) =>
+              this.setState({
+                editTotalSquareFootage: Number(e.target.value),
+              })
+            }
+          />
+          <button type='submit'>Update</button>
+        </form>
+      </StyledModal>
     );
   }
 }

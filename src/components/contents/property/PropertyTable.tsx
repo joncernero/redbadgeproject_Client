@@ -114,7 +114,7 @@ class PropertyTable extends Component<Props, State> {
               onClick={() => {
                 this.props.togglePropertyCreate();
               }}>
-              Create Property
+              New Property
             </CreateButton>
           </TitleDiv>
           <hr />
