@@ -7,9 +7,5 @@ switch (window.location.hostname) {
     break;
   case 'jac-my-diligenceclient.herokuapp.com':
     APIURL = 'https://jac-my-diligenceapp.herokuapp.com';
-    break;
-  default:
-    alert('URL Error!');
-    break;
 }
 export default APIURL;
