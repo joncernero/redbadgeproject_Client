@@ -13,7 +13,6 @@ export class Home extends Component {
               Determine the right value for your purchase or stay on budget with
               your next renovation. No paper required!{' '}
             </p>
-            <button>Request A Demo</button>
           </TextContainer>
         </ImageContainer>
       </div>
