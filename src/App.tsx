@@ -37,7 +37,6 @@ export class App extends Component<{}, Token> {
       SessionToken: newToken,
     });
   };
-  componentDidMount() {}
 
   clearToken = () => {
     localStorage.clear();
@@ -67,6 +66,7 @@ export class App extends Component<{}, Token> {
     if (pageToShow === 'photos') {
       component = <PhotoIndex token={this.state.SessionToken} />;
     }
+
     return localStorage.getItem('token') ? component : <Redirect to='/' />;
   };
 
