@@ -12,7 +12,7 @@ export const Container = styled.div`
 
 export const TextContainer = styled.div`
   margin-left: 200px;
-  padding: 25px;
+  padding: 45px 25px;
   background: rgba(255, 255, 255, 0.6);
   height: 50vh;
   width: 25vw;
