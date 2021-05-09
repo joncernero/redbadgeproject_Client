@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import APIURL from '../../utilities/Environments';
+import APIURL from '../../Utilities/Environments';
 import UserEdit from './UserEdit';
-import { EditButton, DeleteButton, TitleDiv } from '../../styled/Index';
+import { EditButton, DeleteButton, TitleDiv } from '../../Styles/Index';
 import {
   Table,
   TableBody,

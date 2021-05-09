@@ -11,7 +11,7 @@ import {
   NavMenuItems,
   NavbarToggle,
   Span,
-} from '../../styled/Nav';
+} from '../../Styles/Nav';
 import { RouteComponentProps, withRouter } from 'react-router-dom';
 
 interface State {

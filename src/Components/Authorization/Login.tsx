@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import APIURL from '../../utilities/Environments';
+import APIURL from '../../Utilities/Environments';
 import { RouteComponentProps, withRouter } from 'react-router-dom';
-import { LoginDiv } from '../../styled/Index';
+import { LoginDiv } from '../../Styles/Index';
 
 interface State {
   email: string;

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import APIURL from '../../utilities/Environments';
-import { RegisterDiv } from '../../styled/Index';
+import APIURL from '../../Utilities/Environments';
+import { RegisterDiv } from '../../Styles/Index';
 
 interface State {
   user: {

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import APIURL from '../../../utilities/Environments';
+import APIURL from '../../../Utilities/Environments';
 import PropertyEdit from './PropertyEdit';
 import PropertyCreate from './PropertyCreate';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
@@ -8,7 +8,7 @@ import {
   DeleteButton,
   CreateButton,
   TitleDiv,
-} from '../../../styled/Index';
+} from '../../../Styles/Index';
 import {
   Table,
   TableBody,

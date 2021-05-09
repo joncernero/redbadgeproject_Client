@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Register } from './Register';
-import APIURL from '../../utilities/Environments';
+import APIURL from '../../Utilities/Environments';
 import UserTable from './UserTable';
-import { TitleDiv } from '../../styled/Index';
+import { TitleDiv } from '../../Styles/Index';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
 
 interface User {

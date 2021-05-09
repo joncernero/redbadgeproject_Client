@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { ImageContainer, TextContainer } from '../styled/Containers';
+import { ImageContainer, TextContainer } from '../Styles/Containers';
 
 class Home extends Component {
   render() {

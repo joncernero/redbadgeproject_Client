@@ -1,21 +1,21 @@
 import React, { Component } from 'react';
-import Dashboard from './components/contents/Dashboard';
-import PropertyIndex from './components/contents/property/PropertyIndex';
-import UnitIndex from './components/contents/units/UnitIndex';
-import FeatureIndex from './components/contents/features/FeatureIndex';
-import PhotoIndex from './components/contents/photos/PhotoIndex';
-import { Container } from './styled/Containers';
+import Dashboard from './Components/Contents/Dashboard';
+import PropertyIndex from './Components/Contents/Property/PropertyIndex';
+import UnitIndex from './Components/Contents/Units/UnitIndex';
+import FeatureIndex from './Components/Contents/Features/FeatureIndex';
+import PhotoIndex from './Components/Contents/Photos/PhotoIndex';
+import { Container } from './Styles/Containers';
 import {
   BrowserRouter as Router,
   Route,
   Switch,
   Redirect,
 } from 'react-router-dom';
-import Login from './components/authorization/Login';
-import Navbar from './components/navigation/Navbar';
-import Home from './components/Home';
+import Login from './Components/Authorization/Login';
+import Navbar from './Components/Navigation/Navbar';
+import Home from './Components/Home';
 // import { About } from './pages/About';
-import Admin from './components/authorization/Admin';
+import Admin from './Components/Authorization/Admin';
 
 export interface Token {
   SessionToken: string;

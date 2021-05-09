@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import APIURL from '../../../utilities/Environments';
+import APIURL from '../../../Utilities/Environments';
 import UnitTable from './UnitTable';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
-import { Container } from '../../../styled/Containers';
+import { Container } from '../../../Styles/Containers';
 
 interface Unit {
   id: number;

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { StyledModal } from '../../styled/Modal';
-import APIURL from '../../utilities/Environments';
+import { StyledModal } from '../../Styles/Modal';
+import APIURL from '../../Utilities/Environments';
 import { motion } from 'framer-motion';
 
 interface User {

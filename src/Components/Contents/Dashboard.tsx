@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import PropertyIndex from './property/PropertyIndex';
-import { Container } from '../../styled/Containers';
+import PropertyIndex from './Property/PropertyIndex';
+import { Container } from '../../Styles/Containers';
 
 interface State {}
 

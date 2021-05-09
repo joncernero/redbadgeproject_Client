@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import APIURL from '../../../utilities/Environments';
+import APIURL from '../../../Utilities/Environments';
 import FeatureEdit from './FeatureEdit';
 import FeatureCreate from './FeatureCreate';
-import { EditButton, DeleteButton, TitleDiv } from '../../../styled/Index';
+import { EditButton, DeleteButton, TitleDiv } from '../../../Styles/Index';
 import {
   Table,
   TableBody,

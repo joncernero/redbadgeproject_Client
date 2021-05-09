@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import APIURL from '../../../utilities/Environments';
+import APIURL from '../../../Utilities/Environments';
 import FeatureTable from './FeatureTable';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
 

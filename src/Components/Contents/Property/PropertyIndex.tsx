@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import APIURL from '../../../utilities/Environments';
+import APIURL from '../../../Utilities/Environments';
 import PropertyTable from './PropertyTable';
 
 interface Property {
