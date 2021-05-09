@@ -13,7 +13,7 @@ import {
 } from 'react-router-dom';
 import Login from './components/authorization/Login';
 import Navbar from './components/navigation/Navbar';
-import Home from './pages/Home';
+import Home from './components/Home';
 // import { About } from './pages/About';
 import Admin from './components/authorization/Admin';
 
