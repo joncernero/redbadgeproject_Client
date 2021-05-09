@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { ImageContainer, TextContainer } from '../styled/Containers';
 
-export class Home extends Component {
+class Home extends Component {
   render() {
     return (
       <div>
@@ -19,3 +19,5 @@ export class Home extends Component {
     );
   }
 }
+
+export default Home;

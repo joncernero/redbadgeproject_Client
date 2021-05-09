@@ -13,8 +13,8 @@ import {
 } from 'react-router-dom';
 import Login from './components/authorization/Login';
 import Navbar from './components/navigation/Navbar';
-import { Home } from './pages/Home';
-import { About } from './pages/About';
+import Home from './pages/Home';
+// import { About } from './pages/About';
 import Admin from './components/authorization/Admin';
 
 export interface Token {
@@ -79,7 +79,7 @@ export class App extends Component<{}, Token> {
         <Container>
           <Switch>
             <Route path='/' exact component={Home} />
-            <Route path='/about' component={About} />
+            {/* <Route path='/about' component={About} /> */}
             <Route
               path='/login'
               component={() =>
