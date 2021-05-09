@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const StyledModal = styled.div`
   width: 25%;
   height: 65vh;
-  padding: 25px;
+  padding: 45px 25px;
   border-radius: 10px;
   display: flex;
   justify-content: center;
