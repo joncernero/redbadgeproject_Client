@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import APIURL from '../../../Utilities/Environments';
 import { StyledModal } from '../../../Styles/Modal';
-import { motion } from 'framer-motion';
 
 interface Feature {
   id: number;
@@ -60,7 +59,7 @@ class FeatureEdit extends Component<Props, State> {
   };
   render() {
     return (
-      <StyledModal as={motion.div} whileHover={{ scale: 1.1 }} drag>
+      <StyledModal>
         <form onSubmit={this.featureUpdate}>
           <h1>Update Edit</h1>
           <label htmlFor='feature'>Edit Feature:</label>

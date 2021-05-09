@@ -5,6 +5,7 @@ import UnitIndex from './Components/Contents/Units/UnitIndex';
 import FeatureIndex from './Components/Contents/Features/FeatureIndex';
 import PhotoIndex from './Components/Contents/Photos/PhotoIndex';
 import { Container } from './Styles/Containers';
+import { GlobalStyle } from './Styles/Global';
 import {
   BrowserRouter as Router,
   Route,
@@ -72,6 +73,7 @@ export class App extends Component<{}, Token> {
   render() {
     return (
       <Router>
+        <GlobalStyle />
         <Navbar
           clearToken={this.clearToken}
           SessionToken={this.state.SessionToken}
