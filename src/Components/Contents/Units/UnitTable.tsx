@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import APIURL from '../../../Utilities/Environments';
-import UnitEdit from './UnitEdit';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
 import { EditButton, DeleteButton, TitleDiv } from '../../../Styles/Index';
 import UnitCreate from './UnitCreate';
+import UnitEdit from './UnitEdit';
 
 import {
   Table,
