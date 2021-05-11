@@ -84,7 +84,8 @@ class FeatureCreate extends Component<Props, State> {
       <StyledModal
         as={motion.div}
         drag
-        dragConstraints={{ top: 50, left: -25, right: 50, bottom: -50 }}>
+        dragConstraints={{ top: 50, left: 50, right: 50, bottom: 50 }}
+        dragElastic={0.9}>
         <form onSubmit={this.fetchFeatureData}>
           <h1>Create New Feature</h1>
           <div>
