@@ -17,6 +17,7 @@ export const StyledModal = styled.div`
   box-shadow: 1px 1px 15px black;
 
   h1 {
+    padding-top: 15px;
     text-align: center;
     text-shadow: 1px 1px 5px #abb2b9;
   }
@@ -57,6 +58,7 @@ export const StyledModal = styled.div`
     border-radius: 5px;
     margin: 15px;
     box-shadow: 1px 3px 7px gray;
+    padding-bottom: 15px;
 
     &:hover {
       background: #d4efdf;
