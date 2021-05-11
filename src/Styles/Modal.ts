@@ -4,6 +4,7 @@ export const StyledModal = styled.div`
   width: 25%;
   height: 65vh;
   border-radius: 10px;
+  padding: 35px 25px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -17,7 +18,6 @@ export const StyledModal = styled.div`
   box-shadow: 1px 1px 15px black;
 
   h1 {
-    padding-top: 15px;
     text-align: center;
     text-shadow: 1px 1px 5px #abb2b9;
   }
@@ -27,7 +27,6 @@ export const StyledModal = styled.div`
     display: block;
     width: 300px;
     margin: 10px auto;
-    padding: 45px 25px;
   }
 
   label {
@@ -58,7 +57,6 @@ export const StyledModal = styled.div`
     border-radius: 5px;
     margin: 15px;
     box-shadow: 1px 3px 7px gray;
-    padding-bottom: 15px;
 
     &:hover {
       background: #d4efdf;
