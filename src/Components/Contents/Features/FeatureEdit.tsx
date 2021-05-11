@@ -60,11 +60,7 @@ class FeatureEdit extends Component<Props, State> {
   };
   render() {
     return (
-      <StyledModal
-        as={motion.div}
-        drag
-        dragConstraints={{ top: 50, left: 50, right: 50, bottom: 50 }}
-        dragElastic={0.9}>
+      <StyledModal as={motion.div} drag>
         <form onSubmit={this.featureUpdate}>
           <h1>Update Edit</h1>
           <label htmlFor='feature'>Edit Feature:</label>

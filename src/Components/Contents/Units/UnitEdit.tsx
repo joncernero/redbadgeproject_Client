@@ -69,11 +69,7 @@ class UnitEdit extends Component<Props, State> {
 
   render() {
     return (
-      <StyledModal
-        as={motion.div}
-        drag
-        dragConstraints={{ top: 50, left: 50, right: 50, bottom: 50 }}
-        dragElastic={0.9}>
+      <StyledModal as={motion.div} drag>
         <form onSubmit={this.unitUpdate}>
           <h1>Update Unit</h1>
           <label htmlFor='name'>EditName:</label>
