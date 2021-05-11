@@ -3,7 +3,6 @@ import styled from 'styled-components';
 export const StyledModal = styled.div`
   width: 25%;
   height: 65vh;
-  padding: 45px 25px;
   border-radius: 10px;
   display: flex;
   justify-content: center;
@@ -27,6 +26,7 @@ export const StyledModal = styled.div`
     display: block;
     width: 300px;
     margin: 10px auto;
+    padding: 45px 25px;
   }
 
   label {
