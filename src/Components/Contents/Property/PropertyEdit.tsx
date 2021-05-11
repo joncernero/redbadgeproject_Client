@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import APIURL from '../../../Utilities/Environments';
 import { StyledModal } from '../../../Styles/Modal';
+import { motion } from 'framer-motion';
 
 interface Property {
   id: number;
@@ -68,7 +69,10 @@ class PropertyEdit extends Component<Props, State> {
 
   render() {
     return (
-      <StyledModal>
+      <StyledModal
+        as={motion.div}
+        drag
+        dragConstraints={{ top: 50, left: -25, right: 50, bottom: -50 }}>
         <form onSubmit={this.propertyUpdate}>
           <h1>Update Property</h1>
           <label htmlFor='name'>Edit Name:</label>

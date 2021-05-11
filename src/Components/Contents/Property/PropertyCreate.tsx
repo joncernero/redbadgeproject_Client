@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import APIURL from '../../../Utilities/Environments';
 import { StyledModal } from '../../../Styles/Modal';
+import { motion } from 'framer-motion';
 
 interface State {
   name: string;
@@ -70,7 +71,10 @@ class PropertyCreate extends Component<Props, State> {
 
   render() {
     return (
-      <StyledModal>
+      <StyledModal
+        as={motion.div}
+        drag
+        dragConstraints={{ top: 50, left: -25, right: 50, bottom: -50 }}>
         <form onSubmit={this.fetchPropertyData}>
           <h1>Create New Property</h1>
           <div>

@@ -96,7 +96,6 @@ class UnitCreate extends Component<Props, State> {
     return (
       <StyledModal
         as={motion.div}
-        whileHover={{ scale: 1.1 }}
         drag
         dragConstraints={{ top: 50, left: -25, right: 50, bottom: -50 }}>
         <form onSubmit={this.fetchUnitData}>
