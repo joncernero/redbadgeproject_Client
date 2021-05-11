@@ -45,3 +45,12 @@ You can learn more in the [Create React App documentation](https://facebook.gith
 
 To learn React, check out the [React documentation](https://reactjs.org/).
 # redbadgeproject_Client
+
+### 'diligence'
+
+Diligence is an app for due diligence walks and property assessments. Users can gather and store information to assist with each facet of acquiring, building, and renovating properties. 
+
+### Build and Data Flow
+The clientside application is built utilizing react-router-dom for navigation, typescript, styled components, material ui, and css for styling. Companies are provided an initial administrator. Administrators can create and delete new users. From the dashboard you can create properties and through each property you can navigate to its units. Features such as cabinets, appliances, countertops, etc. can be added to units. 
+
+For further documentation visit: https://app.gitbook.com/@cernero-jon/s/redbadge-journal/final-project/
