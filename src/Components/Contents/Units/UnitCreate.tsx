@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import APIURL from '../../../Utilities/Environments';
 import { StyledModal } from '../../../Styles/Modal';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
+import { motion } from 'framer-motion';
 
 interface Unit {
   id: number;
@@ -93,7 +94,11 @@ class UnitCreate extends Component<Props, State> {
 
   render() {
     return (
-      <StyledModal>
+      <StyledModal
+        as={motion.div}
+        whileHover={{ scale: 1.1 }}
+        drag
+        dragConstraints={{ top: 50, left: -25, right: 50, bottom: -50 }}>
         <form onSubmit={this.fetchUnitData}>
           <h1>Create Unit</h1>
           <div>

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import APIURL from '../../../Utilities/Environments';
 import { StyledModal } from '../../../Styles/Modal';
+import { motion } from 'framer-motion';
 
 interface Unit {
   id: number;
@@ -68,7 +69,11 @@ class UnitEdit extends Component<Props, State> {
 
   render() {
     return (
-      <StyledModal>
+      <StyledModal
+        as={motion.div}
+        whileHover={{ scale: 1.1 }}
+        drag
+        dragConstraints={{ top: 50, left: -25, right: 50, bottom: -50 }}>
         <form onSubmit={this.unitUpdate}>
           <h1>Update Unit</h1>
           <label htmlFor='name'>EditName:</label>

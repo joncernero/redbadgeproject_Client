@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import APIURL from '../../../Utilities/Environments';
 import { StyledModal } from '../../../Styles/Modal';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
+import { motion } from 'framer-motion';
 
 interface Feature {
   id: number;
@@ -80,7 +81,11 @@ class FeatureCreate extends Component<Props, State> {
   };
   render() {
     return (
-      <StyledModal>
+      <StyledModal
+        as={motion.div}
+        whileHover={{ scale: 1.1 }}
+        drag
+        dragConstraints={{ top: 50, left: -25, right: 50, bottom: -50 }}>
         <form onSubmit={this.fetchFeatureData}>
           <h1>Create New Feature</h1>
           <div>
